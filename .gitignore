@@ -2,3 +2,5 @@ debug
 debug.test
 
 /.vscode/tags
+
+/.env
