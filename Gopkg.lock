@@ -58,7 +58,7 @@
 [[projects]]
   branch = "master"
   name = "golang.org/x/net"
-  packages = ["html","html/atom"]
+  packages = ["context","context/ctxhttp","html","html/atom"]
   revision = "a8b9294777976932365dabb6640cf1468d95c70f"
 
 [[projects]]
@@ -67,9 +67,15 @@
   packages = ["unix","windows"]
   revision = "8b4580aae2a0dd0c231a45d3ccb8434ff533b840"
 
+[[projects]]
+  branch = "master"
+  name = "google.golang.org/api"
+  packages = ["gensupport","googleapi","googleapi/internal/uritemplates","googleapi/transport","youtube/v3"]
+  revision = "3d8027ad5aac1c3f32ad0eeae4458a5d69682263"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "e0030a1f7719fb4a6dc2fd31a206d5bf4319bc7fc8689f0a588929b0df041524"
+  inputs-digest = "0550fc9916add8370fedc33bcc5bcd62bd5c32375c2454c27a9806f323e79518"
   solver-name = "gps-cdcl"
   solver-version = 1
