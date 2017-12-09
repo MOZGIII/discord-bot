@@ -1,0 +1,4 @@
+{
+  "go.testEnvFile": "${workspaceRoot}/.env",
+  "go.formatOnSave": true
+}
