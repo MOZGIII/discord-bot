@@ -8,7 +8,7 @@ import (
 
 // Searcher performs searches on YouTube.
 type Searcher interface {
-	Search(text string) (*SearchResult, error)
+	Search(text string) (SearchResult, error)
 }
 
 // SearchResult provides the info a YouTube search result.
