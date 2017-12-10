@@ -46,6 +46,12 @@ func handleMessageCreate(s *discord.Session, m *discord.MessageCreate) {
 		}
 		input := command.Args
 
+		if err := s.MessageReactionAdd(m.ChannelID, m.ID, "\u2705"); err != nil {
+			// Error showing user configrnation.
+			reportError(err)
+			// do not terminate execution
+		}
+
 		videoID, err := youtube.DefaultClient.Resolve(input)
 		if err != nil {
 			// Error determining video id.
