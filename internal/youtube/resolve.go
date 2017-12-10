@@ -19,6 +19,9 @@ func (c *Client) Resolve(input string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	if result == nil {
+		return "", fmt.Errorf("no videos found for %q", input)
+	}
 	return result.VideoID(), nil
 }
 
