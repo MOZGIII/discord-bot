@@ -30,7 +30,8 @@ func parseYouTubeVideoURL(input string) (*youTubeVideoURL, error) {
 	if err != nil {
 		return nil, err
 	}
-	if u.Hostname() != "youtube.com" {
+	hostname := u.Hostname()
+	if hostname != "youtube.com" && hostname != "www.youtube.com" {
 		return nil, fmt.Errorf("wrong URL host name: %s", u.Hostname())
 	}
 	return &youTubeVideoURL{url: u}, nil
