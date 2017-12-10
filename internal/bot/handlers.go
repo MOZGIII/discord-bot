@@ -49,7 +49,7 @@ func handleMessageCreate(s *discord.Session, m *discord.MessageCreate) {
 		videoID, err := youtube.DefaultClient.Resolve(input)
 		if err != nil {
 			// Error determining video id.
-			reportError(fmt.Errorf("play error: no video URL specified"))
+			reportError(err)
 			return
 		}
 		videoURL := youtube.VideoURL(videoID)
