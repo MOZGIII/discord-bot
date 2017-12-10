@@ -1,6 +1,7 @@
 package bot
 
 import (
+	"log"
 	"os"
 	"strings"
 )
@@ -17,10 +18,14 @@ type parsedCommand struct {
 }
 
 func (p *commandParser) ParseCommand(raw string) (*parsedCommand, error) {
-	if !strings.HasPrefix(raw, p.Prefix) {
+	return parseCommand(raw, p.Prefix)
+}
+
+func parseCommand(raw, prefix string) (*parsedCommand, error) {
+	if !strings.HasPrefix(raw, prefix) {
 		return nil, nil
 	}
-	raw = raw[len(p.Prefix):]
+	raw = raw[len(prefix):]
 
 	split := strings.SplitN(raw, " ", 2)
 	if len(split) < 1 {
@@ -48,4 +53,5 @@ func init() {
 	comparse = &commandParser{
 		Prefix: prefix,
 	}
+	log.Printf("Prefix set to: %q", comparse.Prefix)
 }
