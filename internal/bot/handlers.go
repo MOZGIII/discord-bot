@@ -41,7 +41,7 @@ func handleMessageCreate(s *discord.Session, m *discord.MessageCreate) {
 		// Determine video URL.
 		if command.Args == "" {
 			// No argument given.
-			reportError(fmt.Errorf("play error: no video URL specified"))
+			reportError(fmt.Errorf("play error: no video specified"))
 			return
 		}
 		input := command.Args
