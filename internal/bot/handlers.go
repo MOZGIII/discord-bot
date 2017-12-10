@@ -3,6 +3,8 @@ package bot
 import (
 	"fmt"
 
+	"github.com/MOZGIII/discord-bot/internal/youtube"
+
 	discord "github.com/bwmarrin/discordgo"
 )
 
@@ -42,7 +44,15 @@ func handleMessageCreate(s *discord.Session, m *discord.MessageCreate) {
 			reportError(fmt.Errorf("play error: no video URL specified"))
 			return
 		}
-		videoURL := command.Args
+		input := command.Args
+
+		videoID, err := youtube.DefaultClient.Resolve(input)
+		if err != nil {
+			// Error determining video id.
+			reportError(fmt.Errorf("play error: no video URL specified"))
+			return
+		}
+		videoURL := youtube.VideoURL(videoID)
 
 		// Find the channel that the message came from.
 		c, err := s.State.Channel(m.ChannelID)
