@@ -2,6 +2,7 @@ package bot
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/MOZGIII/discord-bot/internal/youtube"
 
@@ -87,6 +88,25 @@ func handleMessageCreate(s *discord.Session, m *discord.MessageCreate) {
 			}
 		}
 		reportError(fmt.Errorf("play error: the command author not found in any voice channel within the guild"))
+		return
+	}
+	if command.Command == "restart" {
+		if err := s.MessageReactionAdd(m.ChannelID, m.ID, "\u2705"); err != nil {
+			// Error showing user configrnation.
+			reportError(err)
+			// do not terminate execution
+		}
+
+		p, err := os.FindProcess(os.Getpid())
+		if err != nil {
+			reportError(fmt.Errorf("restart error: %s", err))
+			return
+		}
+		if err := p.Signal(os.Interrupt); err != nil {
+			reportError(fmt.Errorf("restart error: %s", err))
+			return
+		}
+		return
 	}
 }
 
