@@ -1,4 +1,8 @@
 {
   "go.testEnvFile": "${workspaceRoot}/.env",
-  "go.formatOnSave": true
+  "go.testFlags": ["-v"],
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true
+  }
 }
